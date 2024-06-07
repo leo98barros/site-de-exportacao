@@ -1,16 +1,27 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProdutoController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes(['register' => false]);
 
-Route::get('/', [HomeController::class, 'home'])->name('home');
-Route::get('/sobre', [HomeController::class, 'sobre'])->name('sobre');
-Route::get('/produtos', [HomeController::class, 'produto'])->name('produto');
-Route::get('/contato', [HomeController::class, 'contato'])->name('contato');
+Route::controller(HomeController::class)->group(function () {
+    Route::get('/', 'index')->name('home');
+    Route::get('/sobre', 'sobre')->name('sobre');
+    Route::get('/produtos', 'produto')->name('produto');
+    Route::get('/produtos/{produto}', 'produto')->name('produto.show');
+    Route::get('/contato', 'contato')->name('contato');
+});
 
-Auth::routes();
+Route::middleware('auth')->prefix('admin')->as('admin.')->group(function () {
+    Route::controller(AdminController::class)->group(function () {
+        Route::post('painel', 'painel')->name('painel');
+    });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::resource('produtos', ProdutoController::class);
+    Route::resource('categorias', CategoriaController::class);
+});
