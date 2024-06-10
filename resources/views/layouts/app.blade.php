@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,7 +26,7 @@
         }       
     </style>
 </head>
-
+    
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-info p-3">
@@ -39,7 +38,7 @@
                 </button>
 
                 <div class=" collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul class="navbar-nav ms-auto ">
+                    <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
                             <a class="nav-link mx-2" aria-current="page" href="{{ route('home') }}">Home</a>
                         </li>
@@ -54,21 +53,27 @@
                         </li>
                     </ul>
                     <ul class="navbar-nav ms-auto d-none d-lg-inline-flex">
-                        <li class="nav-item mx-2">
-                            @if (Route::has('login'))
-                                <nav class="-mx-3 flex flex-1 justify-end">
-                                    @auth
-                                        <a href="#" class="btn btn-primary" role="button">
-                                            Painel
-                                        </a>
-                                    @else
-                                        <a href="{{ route('login') }}" class="btn btn-primary" role="button">
-                                            Log in
-                                        </a>
-                                    @endauth
-                                </nav>
-                            @endif
-                        </li>
+                        @if (Route::has('login'))
+                            @auth
+                                <li class="nav-item mx-2">
+                                    <a href="#" class="btn btn-primary" role="button">
+                                        Painel
+                                    </a>
+                                </li>
+                                <li class="nav-item mx-2">
+                                    <form action="{{ route('logout') }}" method="post">
+                                        @csrf
+                                        <input type="submit" value="Sair" class="btn btn-secondary">
+                                    </form>
+                                </li>
+                            @else
+                                <li class="nav-item mx-2">
+                                    <a href="{{ route('login') }}" class="btn btn-primary" role="button">
+                                        Entrar
+                                    </a>
+                                </li>
+                            @endauth
+                        @endif
                     </ul>
                 </div>
             </div>
@@ -100,5 +105,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     @yield('js')
 </body>
-
 </html>
