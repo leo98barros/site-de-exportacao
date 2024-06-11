@@ -1,0 +1,10 @@
+.rodape {
+    /* position: sticky; */
+    bottom: 0;
+}
+
+.conteudo {
+    min-height: calc(80vh - 40px); /* Leva em consideração a altura do cabeçalho e do rodapé */
+    padding-bottom: 40px; /* Leva em consideração a altura do rodapé */
+    overflow: auto; /* Permite a rolagem do conteúdo caso exceda o tamanho da tela */
+}       
