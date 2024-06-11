@@ -13,47 +13,45 @@
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     @yield('css')
-    <style>
-        .rodape {
-            position: sticky;
-            bottom: 0;
-        }
+    <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
 
-        .conteudo {
-            min-height: calc(80vh - 40px); /* Leva em consideração a altura do cabeçalho e do rodapé */
-            padding-bottom: 40px; /* Leva em consideração a altura do rodapé */
-            overflow: auto; /* Permite a rolagem do conteúdo caso exceda o tamanho da tela */
-        }       
-    </style>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
     
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-info p-3">
+        <nav class="navbar navbar-expand-lg navbar-light bg-black p-3">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{{ route('home') }}">{{ config('app.name') }}</a>
+                <a class="navbar-brand text-light" href="{{ route('home') }}">{{ config('app.name') }}</a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class=" collapse navbar-collapse" id="navbarNavDropdown">
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link mx-2" aria-current="page" href="{{ route('home') }}">Home</a>
+                            <a class="nav-link mx-2 text-light" aria-current="page" href="{{ route('home') }}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link mx-2" href="{{ route('produto') }}">Produtos</a>
+                            <a class="nav-link mx-2 text-light" href="{{ route('produto') }}">Produtos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link mx-2" href="{{ route('sobre') }}">Sobre</a>
+                            <a class="nav-link mx-2 text-light" href="{{ route('sobre') }}">Sobre</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link mx-2" href="{{ route('contato') }}">Contato</a>
+                            <a class="nav-link mx-2 text-light" href="{{ route('contato') }}">Contato</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav ms-auto d-none d-lg-inline-flex">
                         @if (Route::has('login'))
+                            <li class="nav-item mx-2">
+                                <a href="{{ route('carrinho') }}" class="btn btn-secondary" role="button">
+                                    Carrinho
+                                </a>
+                            </li>
                             @auth
                                 <li class="nav-item mx-2">
                                     <a href="#" class="btn btn-primary" role="button">
@@ -68,7 +66,7 @@
                                 </li>
                             @else
                                 <li class="nav-item mx-2">
-                                    <a href="{{ route('login') }}" class="btn btn-primary" role="button">
+                                    <a href="{{ route('login') }}" class="btn btn-secondary" role="button">
                                         Entrar
                                     </a>
                                 </li>
@@ -81,12 +79,10 @@
     </header>
 
     <main class="conteudo">
-        <div class="container-fluid py-3">
-            @yield('body')
-        </div>
+        @yield('body')
     </main>
 
-    <footer class="footer-copyright text-center py-3 rodape">
+    <footer class="footer-copyright text-center py-3 rodape bg-body-secondary">
         <div class="container d-flex flex-wrap justify-content-between align-items-center py-3 border-top">
             <p class="col-md-4 mb-0 text-muted">Léo Sobral &copy; {{ date('Y') }}</p>
         
@@ -102,7 +98,7 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> --}}
     @yield('js')
 </body>
 </html>

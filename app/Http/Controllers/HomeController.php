@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -17,9 +19,19 @@ class HomeController extends Controller
     /**
      * @return
      */
-    public function produto()
+    public function produto(Product $product)
     {
-        return view('app.produtos');
+        return view('app.produto', ['product' => $product]);
+    }
+
+    /**
+     * @return
+     */
+    public function produtos()
+    {
+        $categories = Category::with('products')->get();
+
+        return view('app.produtos', ['categories' => $categories]);
     }
 
     /**
@@ -28,6 +40,14 @@ class HomeController extends Controller
     public function sobre()
     {
         return view('app.sobre');
+    }
+
+    /**
+     * @return
+     */
+    public function carrinho()
+    {
+        return view('app.checkout');
     }
 
     /**

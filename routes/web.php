@@ -12,8 +12,9 @@ Auth::routes(['register' => false]);
 Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'index')->name('home');
     Route::get('/sobre', 'sobre')->name('sobre');
-    Route::get('/produtos', 'produto')->name('produto');
-    Route::get('/produtos/{produto}', 'produto')->name('produto.show');
+    Route::get('/produtos', 'produtos')->name('produto');
+    Route::get('/produtos/{product}', 'produto')->name('produto.show');
+    Route::get('/carrinho', 'carrinho')->name('carrinho');
     Route::get('/contato', 'contato')->name('contato');
 });
 
