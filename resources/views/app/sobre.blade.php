@@ -2,11 +2,9 @@
 
 @section('body')
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-10 mt-3">
-                <h2>
-                    Quem somos?
-                </h2>
+        <div class="row justify-content-center my-5">
+            <div class="col-12">
+                <img src="{{ asset('img/logo.jpg') }}" class="rounded mx-auto d-block" alt="..." style="max-height: 250px">
             </div>
         </div>
         <div class="row justify-content-center mt-3">
@@ -27,7 +25,8 @@
                 <h5>Kayo Marques</h5>
             </div>
         </div>
-        <div class="row justify-content-center mt-4">
+
+        <div class="row justify-content-center mt-5">
             <div class="col-5">
                 <h2>
                     Missão
