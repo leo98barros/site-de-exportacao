@@ -3,7 +3,7 @@
 @section('body')
 <div class="container">
     <div class="row justify-content-center mt-5">
-        <div class="col-4">
+        <div class="col-6">
             <img src="{{$product->image}}" alt="" srcset="">
         </div>
         <div class="col-4">
